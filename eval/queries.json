@@ -1,0 +1,25 @@
+{
+  "note": "Held-out text queries written by hand. None of these strings were used to collect the images.",
+  "queries": [
+    {"text": "a calm bright room with simple wooden furniture", "board": "quiet-rooms"},
+    {"text": "uncluttered bedroom with white walls", "board": "quiet-rooms"},
+    {"text": "massive raw concrete building", "board": "concrete-poetry"},
+    {"text": "heavy grey civic architecture with hard angles", "board": "concrete-poetry"},
+    {"text": "old scientific drawing of leaves and flowers", "board": "living-forms"},
+    {"text": "hand painted plant specimen print", "board": "living-forms"},
+    {"text": "glazed clay vase made on a wheel", "board": "earth-and-fire"},
+    {"text": "rustic stoneware bowls", "board": "earth-and-fire"},
+    {"text": "koi fish in a quiet garden pool", "board": "still-water"},
+    {"text": "moss stones and water in a zen garden", "board": "still-water"},
+    {"text": "person posing in a stylish outfit on the street", "board": "street-language"},
+    {"text": "fashion portrait of a model", "board": "street-language"},
+    {"text": "close up of a sweet pastry on a plate", "board": "small-rituals"},
+    {"text": "a cup of coffee with a cake", "board": "small-rituals"},
+    {"text": "old chrome motorbike parked outside", "board": "machines-with-soul"},
+    {"text": "classic bike engine and fuel tank", "board": "machines-with-soul"},
+    {"text": "ocean waves crashing against rocky cliffs", "board": "edge-of-land"},
+    {"text": "dramatic seaside headland at sunset", "board": "edge-of-land"},
+    {"text": "colorful painting made of circles and triangles", "board": "shape-and-color"},
+    {"text": "bold modernist poster with flat shapes", "board": "shape-and-color"}
+  ]
+}

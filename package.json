@@ -1,0 +1,23 @@
+{
+  "name": "mosaic-visual-discovery",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "Graph-aware multimodal visual discovery with real CLIP embeddings, content graphs, and explainable reranking.",
+  "scripts": {
+    "fetch": "node scripts/fetch-dataset.mjs",
+    "index": "node scripts/build-index.mjs",
+    "evaluate": "node scripts/evaluate.mjs",
+    "setup": "npm run fetch && npm run index && npm run evaluate",
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm test && npm run evaluate",
+    "export": "node scripts/export-static.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "4.3.0"
+  }
+}

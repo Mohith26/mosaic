@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mosaic · Graph-aware visual discovery</title>
+<meta name="description" content="Graph-aware multimodal visual search: real CLIP embeddings plus a pin-board graph, compared live against CLIP alone.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <div><h1>Mosaic</h1><p>Graph-aware visual discovery</p></div>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button role="tab" data-tab="discover" class="on">Discover</button>
+    <button role="tab" data-tab="constellation">Constellation</button>
+    <button role="tab" data-tab="how">How it works</button>
+  </nav>
+  <div class="modes" role="group" aria-label="Ranking mode">
+    <button data-mode="graph" class="on" title="CLIP + board graph">Graph-aware</button>
+    <button data-mode="baseline" title="Plain CLIP cosine similarity">CLIP only</button>
+    <button data-mode="compare" title="Side by side">Compare</button>
+  </div>
+</header>
+
+<section class="searchbar">
+  <form id="search" autocomplete="off">
+    <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+    <input id="q" placeholder="Describe a look, a mood, an object…" aria-label="Search">
+    <label class="cam" title="Search with your own image">
+      <input type="file" id="upload" accept="image/*" hidden>
+      <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M4 8h3l2-2.5h6L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.6"/></svg>
+    </label>
+    <button type="submit" class="go">Search</button>
+  </form>
+  <div id="chips" class="chips"></div>
+</section>
+
+<div id="querybar" class="querybar" hidden></div>
+
+<main>
+  <section id="tab-discover" class="tab on">
+    <div class="discover">
+      <div id="results" class="results"></div>
+      <aside class="side">
+        <div class="panel" id="boardpanel">
+          <div class="ph"><h2>Your board</h2><button id="clearboard" class="link" hidden>Clear</button></div>
+          <p class="hint" id="boardhint">Save pins with <b>+</b>. Mosaic blends your board into every ranking and seeds the graph walk from it.</p>
+          <div id="board" class="boardgrid"></div>
+          <div id="taste" class="taste"></div>
+          <button id="forboard" class="ghost" hidden>Recommend for this board</button>
+        </div>
+        <div class="panel" id="why" hidden></div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="tab-constellation" class="tab">
+    <div class="constellation">
+      <canvas id="sky"></canvas>
+      <div class="legend">
+        <span><i class="ln board"></i>Same-board edge</span>
+        <span><i class="ln visual"></i>Visual kNN edge</span>
+        <span><i class="dot hit"></i>Current results</span>
+        <span class="muted">Layout: force-directed over the graph, seeded by a projection of CLIP space. Click any pin to search from it.</span>
+      </div>
+      <div id="tip" class="tip" hidden></div>
+    </div>
+  </section>
+
+  <section id="tab-how" class="tab">
+    <article class="how" id="how"></article>
+  </section>
+</main>
+
+<div id="lens" class="lens" hidden>
+  <div class="lensbox">
+    <div class="lenshead"><h3>Lens</h3><p>Drag a box around one object. Mosaic encodes just that region.</p><button class="x" id="lensclose" aria-label="Close">×</button></div>
+    <div class="lensstage"><img id="lensimg" alt="" draggable="false"><div id="lensrect"></div></div>
+    <div class="lensfoot"><span id="lensinfo" class="muted">No region selected: whole image will be used.</span><button id="lensgo" class="go">Search this region</button></div>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+<footer class="foot" id="foot"></footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>

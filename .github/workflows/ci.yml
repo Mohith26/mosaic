@@ -1,0 +1,18 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Unit and API tests (includes one real CLIP inference)
+        run: npm test
+      - name: Re-run the evaluation and check the graph still beats CLIP
+        run: |
+          npm run evaluate
+          node -e "const m=require('./results/metrics.json');const ok=m.relatedPins.graph.ap>m.relatedPins.baseline.ap&&m.textSearch.graph.ap>m.textSearch.baseline.ap;console.log('related',m.relatedPins.baseline.ap,'->',m.relatedPins.graph.ap,'search',m.textSearch.baseline.ap,'->',m.textSearch.graph.ap);process.exit(ok?0:1)"

@@ -1,0 +1,116 @@
+{
+  "generatedAt": "2026-10-02T04:09:42.591Z",
+  "corpus": {
+    "images": 100,
+    "boards": 10,
+    "edges": 682,
+    "visualEdges": 413,
+    "boardEdges": 269,
+    "model": "Xenova/clip-vit-base-patch16"
+  },
+  "params": {
+    "visualK": 6,
+    "boardK": 4,
+    "damping": 0.85,
+    "iterations": 20,
+    "graphWeight": 0.3,
+    "fusion": 0.3
+  },
+  "relatedPins": {
+    "queries": 100,
+    "baseline": {
+      "r10": 0.6978,
+      "ap": 0.7392,
+      "ndcg": 0.748
+    },
+    "graph": {
+      "r10": 0.8389,
+      "ap": 0.8597,
+      "ndcg": 0.8574
+    },
+    "bootstrapMAP": {
+      "pGraphBetter": 1,
+      "ci95": [
+        0.1027,
+        0.1392
+      ]
+    }
+  },
+  "textSearch": {
+    "queries": 20,
+    "baseline": {
+      "p10": 0.73,
+      "ap": 0.8197,
+      "ndcg": 0.7987
+    },
+    "graph": {
+      "p10": 0.895,
+      "ap": 0.9529,
+      "ndcg": 0.9254
+    },
+    "bootstrapMAP": {
+      "pGraphBetter": 1,
+      "ci95": [
+        0.0854,
+        0.1841
+      ]
+    }
+  },
+  "sweep": [
+    {
+      "graphWeight": 0,
+      "relatedR10": 0.8011,
+      "relatedMAP": 0.8296,
+      "searchP10": 0.8,
+      "searchMAP": 0.8831
+    },
+    {
+      "graphWeight": 0.1,
+      "relatedR10": 0.8333,
+      "relatedMAP": 0.8527,
+      "searchP10": 0.89,
+      "searchMAP": 0.931
+    },
+    {
+      "graphWeight": 0.2,
+      "relatedR10": 0.8389,
+      "relatedMAP": 0.8594,
+      "searchP10": 0.9,
+      "searchMAP": 0.9484
+    },
+    {
+      "graphWeight": 0.3,
+      "relatedR10": 0.8389,
+      "relatedMAP": 0.8597,
+      "searchP10": 0.895,
+      "searchMAP": 0.9529
+    },
+    {
+      "graphWeight": 0.4,
+      "relatedR10": 0.8389,
+      "relatedMAP": 0.861,
+      "searchP10": 0.89,
+      "searchMAP": 0.9542
+    },
+    {
+      "graphWeight": 0.5,
+      "relatedR10": 0.8422,
+      "relatedMAP": 0.8622,
+      "searchP10": 0.89,
+      "searchMAP": 0.9524
+    },
+    {
+      "graphWeight": 0.6,
+      "relatedR10": 0.8433,
+      "relatedMAP": 0.8615,
+      "searchP10": 0.885,
+      "searchMAP": 0.9523
+    }
+  ],
+  "latencyMs": {
+    "rankP50": 0.1189,
+    "rankP95": 0.1291,
+    "textEncodeP50": 1.6125,
+    "textEncodeP95": 2.1583
+  }
+}
