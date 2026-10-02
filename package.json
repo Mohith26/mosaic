@@ -12,7 +12,8 @@
     "start": "node server.mjs",
     "test": "node --test tests/*.test.mjs",
     "check": "npm test && npm run evaluate",
-    "export": "node scripts/export-static.mjs"
+    "export": "node scripts/export-static.mjs",
+    "site-page": "node scripts/build-site-page.mjs"
   },
   "engines": {
     "node": ">=20"

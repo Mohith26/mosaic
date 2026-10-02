@@ -16,8 +16,8 @@ async function boot() {
   if (!STATIC) {
     try { const r = await fetch('api/health'); STATIC = !r.ok; } catch { STATIC = true; }
   }
-  INDEX = await (await fetch('index.json')).json();
-  try { METRICS = await (await fetch('metrics.json')).json(); } catch { METRICS = null; }
+  INDEX = window.MOSAIC_INDEX || await (await fetch('index.json')).json();
+  try { METRICS = window.MOSAIC_METRICS || await (await fetch('metrics.json')).json(); } catch { METRICS = null; }
   ITEMS = INDEX.items;
   E = ITEMS.map((x) => x.embedding);
   const sim = similarityMatrix(E);
@@ -25,7 +25,7 @@ async function boot() {
   ADJ = g.adjacency; EDGES = g.edges;
   FUSION = fuseEmbeddings(E, ADJ, (INDEX.graphParams || DEFAULTS).fusion);
   BOARD_CENTROIDS = INDEX.boards.map((b) => ({ ...b, centroid: addWeighted(ITEMS.filter((x) => x.board === b.slug).map((x) => x.embedding)) }));
-  if (STATIC) document.body.insertAdjacentHTML('afterbegin', `<div class="demo-banner">Demo: this page runs Mosaic entirely in your browser over a fixed 100-image index; free-text and Lens searches download CLIP (~150 MB) once. The full program (indexer, evaluator, server) is <a href="${REPO}">on GitHub</a>.</div>`);
+  if (STATIC) document.body.insertAdjacentHTML('afterbegin', `<div class="demo-banner"><b>This page is a demo.</b> It runs Mosaic entirely in your browser over a fixed 100-image index; free-text and Lens searches download CLIP (~150 MB) once. The real program is <a href="${REPO}">on GitHub</a>: the image pipeline, indexer, evaluator, tests and a live server, which run locally on Node 20+.</div>`);
   renderChips(); renderFoot(); renderHow(); bind(); render();
 }
 
