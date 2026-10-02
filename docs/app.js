@@ -141,7 +141,8 @@ function masonry(rows, html, width, minCol, gap = 16) {
   const n = Math.max(1, Math.floor((width + gap) / (minCol + gap)));
   const cols = Array.from({ length: n }, () => ({ h: 0, parts: [] }));
   rows.forEach((r, i) => {
-    const it = ITEMS[r.index]; const c = cols.reduce((a, b) => (b.h < a.h - 1e-6 ? b : a));
+    // Leftmost column within a small slack of the shortest, so near-ties keep left-to-right rank order.
+    const it = ITEMS[r.index]; const min = Math.min(...cols.map((x) => x.h)); const c = cols.find((x) => x.h <= min + 0.35);
     c.parts.push(html(r, i)); c.h += it.height / it.width + 0.12;
   });
   return cols.map((c) => `<div class="mcol">${c.parts.join('')}</div>`).join('');
